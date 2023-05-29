@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".view.MainActivity"> <!-- Aula 19, Seção 4: Está adicionando uma cor ao background desta tela.
+     android:background="@color/yellow" : Serve para adicionar com para o plano de fundo da tela.
+     -->
+
+    <!-- android:textSize="19sp" : Tamanho da Fonte do texo para TextView. -->
+
+    <!-- style="@style/Widget.AppCompat.TextView.SpinnerItem" : Adicionando um estilo "negrito" ao texto.
+         android:layout_width="match_parent" : Usando o valor match_parent, faz com que o campo de texto ocupe
+         toda a sua linha horizontal (em tamanho) da tela do Layout.
+         android:layout_margin="16dp" : OBS -> Esta linha de código, coloquei para ser inserida quando
+         se clica em cima do TextPlain, na parte de layout_margin. Essa margem ficará no lado esquerdo
+         e direito da caixa de texto.
+
+    -->
+
+    <!-- OBS: Em Atributes, na opção da lupa, coloquei o nome hint, porém
+         não foi apresentado nada. Nesse caso, tive que digitar no código
+         do XML desta activity_main, para inserir o hint manualmente.
+         O hint tem o mesmo efeito de placeholder (para formulário em HTML5).
+         OBS2: No EditText, se mostrar a frase Missing autofillHints attribute,
+         é possível ignorá-la da seguinte forma: Posicione o curso no começo da
+         tag de EditText. Vai aparecer um ícone de uma "lâmpada amarela". Clique Nela.
+         Vai exibir opções. Escolha a segunda opção ( Set ImportantForAutofill="no").
+    -->
+
+    <!-- android:background="@color/corBotoes" : Cor para botão. -->
+
+    <!-- OBS: Na aula 23, da Seção , o professor ensina um atalho, para acessar o Layout Validation (que
+         exibe o tamanho de telas, de diferentes dispositivos).
+         Clique duas vezes no botão Shift. Vai aparecer uma janela. Nela, dentro da caixa de texto,
+         digite Layout Validation. Clique em cima do texto digitado. Pronto. Do lado direito do AndroidStudio,
+         aparecerá uma área do Layout Validation, ao qual está fixa na extremidade direita do AndroidStudio.
+    -->
+
+    <TextView
+        android:id="@+id/textTituloApp"
+        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:background="@color/purple_500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_titulo"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063" />
+    <!-- android:background="@color/purple_500" : Cor para o plano de fundo do TextView. -->
+    <!-- Na aula 33, da seção 4, o id do TextView estava como sendo textTitulo. O prof. selecionou o
+         texto do id  textTitulo , clicou com o botão direito do mouse, para escolher a opção refactor,
+         em seguida rename, para alterá-lo para  textTituloApp.
+    -->
+    <EditText
+        android:id="@+id/editPrimeiroNome"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/txt_hint_edit_primeiro_nome"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/txt_nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTituloApp" />
+    <!-- OBS: Na aula 34, da Seção 4, o prof. diz que o EditText também é
+         uma classe em Java (ou seja, tem uma classe chamada EditText. Com
+         isso, podemos criar um objeto da classe EditText).
+    -->
+    <EditText
+        android:id="@+id/editSobreNomeAluno"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/txt_hint_edit_sobrenome"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/txt_sobrenome"
+        app:layout_constraintTop_toBottomOf="@+id/editPrimeiroNome"
+        tools:layout_editor_absoluteX="0dp" />
+    <!-- OBS: Segundo o que foi proposta na aula 33, da seção 4. android:id="@+id/editSobrenome" foi
+         mudado para android:id="@+id/editSobreNomeAluno"
+    -->
+    <EditText
+        android:id="@+id/editNomeCurso"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/txt_hint_edit_nome_curso_desejado"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/txt_nome_curso_desejado"
+        app:layout_constraintTop_toBottomOf="@+id/editSobreNomeAluno"
+        tools:layout_editor_absoluteX="0dp" />
+    <!-- android:id="@+id/editNomeCursoDesejado" -->
+    <EditText
+        android:id="@+id/editTelefoneContato"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/txt_hint_edit_telefone_contato"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/txt_telefone_contato"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNomeCurso" />
+
+    <Button
+        android:id="@+id/btnLimpar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/corBotoes"
+        android:text="@string/txt_button_limpar"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinalizar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTelefoneContato"
+        app:layout_constraintVertical_bias="0.828" />
+    <!-- android:id="@+id/button" -->
+    <!-- OBS: Na aula 34, seção 4, mostra que Button também tem uma classe correspondente,
+         que se chama Button.
+    -->
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/corBotoes"
+        android:text="@string/txt_button_salvar"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinalizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toEndOf="@+id/btnLimpar"
+        app:layout_constraintTop_toBottomOf="@+id/editTelefoneContato"
+        app:layout_constraintVertical_bias="0.831" />
+
+    <Button
+        android:id="@+id/btnFinalizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/corBotoes"
+        android:text="@string/txt_button_finalizar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTelefoneContato"
+        app:layout_constraintVertical_bias="0.876" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

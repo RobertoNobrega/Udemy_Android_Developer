@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.application'
+}
+// Aula 19, Seção 4
+// OBS: O prof (inicialmente) pede também para apagar a instrução da linha 16. build.gradle (:app)
+// OBS: compileSdk 33 e targetSdk 33 remetem ao SDK que, atualmente (dia 20 de abril) possui em
+// meu notebook.
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "devandroid.nobrega.applistacliente"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

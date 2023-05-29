@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AppListaCliente" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- <style name="Theme.AppListaCliente" parent="Theme.MaterialComponents.DayNight.Dialog.FixedSize.Bridge"> : Estilo
+         para design de tela.
+    -->
+        <!-- Primary brand color. -->
+        <!-- OBS: Este arquivo de themes.xml, serve para activity que não
+             está subordinado ao modo "Not Night".
+        -->
+        <!-- <item name="colorPrimary">@color/purple_500</item> -->
+        <item name="colorPrimary">@color/corBotoes</item> <!-- Cor para o background de botão. -->
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
