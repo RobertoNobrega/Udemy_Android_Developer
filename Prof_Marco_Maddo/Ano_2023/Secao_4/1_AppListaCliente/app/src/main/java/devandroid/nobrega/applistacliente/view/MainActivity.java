@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
                             Aula 30, Seção 4
           O Professor ensina a usar o Modo Debug.
 
+                            Aula 37, Seção 4
+          Nesta aula, ensina a criar uma branch (chamada Versao1_CleanCode) no AndroidStudio.
+          Depois, manutenção do código, por meio desta nova branch.
+          Em seguida, Commit deste código.
  */
 
     Pessoa pessoa; // Declarando um objeto da classe Pessoa. Atalho: Após digitar o nome Pessoa, insira
