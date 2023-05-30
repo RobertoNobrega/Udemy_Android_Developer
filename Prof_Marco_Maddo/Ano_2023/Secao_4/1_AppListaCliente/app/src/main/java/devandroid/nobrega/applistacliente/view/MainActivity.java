@@ -45,16 +45,28 @@ public class MainActivity extends AppCompatActivity {
                             Aula 30, Seção 4
           O Professor ensina a usar o Modo Debug.
 
-                            Aula 37, Seção 4
+                            Aula 37, Seção 5
           Nesta aula, ensina a criar uma branch (chamada Versao1_CleanCode) no AndroidStudio.
           Depois, manutenção do código, por meio desta nova branch.
           Em seguida, Commit deste código.
 
-                            Aula 39, Seção 4
+                            Aula 39, Seção 5
           MVC usando SharedPreferences, para gravar dados de objetos.
             OBS: O SharedPreferences cria um arquivo temporário, que vai gravar
             strings, números, dados booleanos, etc.
+          Os dados, deste app, ficam armazenados em um arquivo, chamado pref_listavip.xml,
+          localizado no seguinte diretório (em Device File Explorer, do AndroidStudio)
+               devandroid.nobrega.applistacliente/shared_prefs/pref_listavip.xml
 
+                            Aula 40, Seção 5
+          MVC usando SharedPreferences, para recuperar dados salvos
+           Foi criado uma nova branch (no AndroidStudio), chamada SharedPreferences_BuscarDados,
+           usando como referência a branch main.
+           Vai ser recuperado os dados gravados, que se encontram no arquivo pref_listavip.xml
+             OBS: Essa versão do app, desta aula, usando a branch SharedPreferences_BuscarDados, intitulado
+             na Commit 1 (branch SharedPreferences_BuscarDados), sobrescreve os dados de uma possível nova
+             pessoa que deseja se cadastrar (EX: Se P1 tem dados registrados no arquivo pref_listavip.xml e,
+             por acaso, P2 se registra, os dados de P1 foram "apagados", sendo substituídos pelos dados de P2).
  */
 
     SharedPreferences preferences; // Declarando um objeto da classe (nativa do android) SharedPreferences (para
@@ -79,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSalvar, btnFinalizar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // Método onCreate. Recebe um Bundle como parâmetro.
+    protected void onCreate(Bundle savedInstanceState){ // Método onCreate. Recebe um Bundle como parâmetro.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // OBS: Atalho (Em R.layout.activity_main , se for selecionado com o cursor do mouse o nome
@@ -98,15 +110,24 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
         // a edição dos dados do objeto.
 
+        // Abaixo, estamos recupendo os dados "registrados" de uma pessoa, que se encontra em um arquivo do próprio dispositivo.
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome","")); // Recuperando Nome no arquivo pref_listavip.xml.
+        // O primeiro argumento é o valor do atributo name, que se encontra na tag string do mesmo arquivo (no arquivo, diz que o valor
+        // deste atributo é primeiroNome). O segundo argumento é, caso não exista esta "key" do primeiro argumento, então, será "".
+        pessoa.setSobreNome(preferences.getString("sobreNome","")); // Recuperando Sobrenome.
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso","")); // Recuperando Nome do Curso.
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato","")); // Recuperando Telefone de Contato.
 
         controller = new PessoaController(); // Instanciando um objeto da classe PessoaController.
         controller.toString(); // Chamando o método toString, da Controller.
 
+        /*
         outraPessoa = new Pessoa();
         outraPessoa.setPrimeiroNome("Roberto");
         outraPessoa.setSobreNome("Nóbrega");
         outraPessoa.setCursoDesejado("Java");
         outraPessoa.setTelefoneContato("11-232355");
+        */
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome); // Aqui, o atributo irá receber
         // a referência de seu respectivo botão, associado ao xml (neste caso,
@@ -115,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
         editSobreNomeAluno = findViewById(R.id.editSobreNomeAluno);
         editNomeCurso = findViewById(R.id.editNomeCurso);
         editTelefoneContato = findViewById(R.id.editTelefoneContato);
+
+        // Abaixo, estará colocando os dados recuperados da pessoa no EditText.
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        editSobreNomeAluno.setText(pessoa.getSobreNome());
+        editNomeCurso.setText(pessoa.getCursoDesejado());
+        editTelefoneContato.setText(pessoa.getTelefoneContato());
 
         // Abaixo, estamos obtendo a referência dos botões.
         btnLimpar = findViewById(R.id.btnLimpar);
@@ -188,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         // programador está usando o método i. Então, o programador está chamando de POOAndroid). O segundo parâmetro representa
         // o que o aplicativo deseja exibir no Logcat (nesse caso, está usando o toString, pois este método vai trazer os dados
         // que se encontram no objeto pessoa).
-        Log.i("POOAndroid","Objeto outraPessoa : " + outraPessoa.toString()); // OBS: Pode usar o mesmo nome de tag para uma outra chamada de Logcat, que
+        // Log.i("POOAndroid","Objeto outraPessoa : " + outraPessoa.toString()); // OBS: Pode usar o mesmo nome de tag para uma outra chamada de Logcat, que
         // deseja exibir dados de um outro objeto de classe.
         
     }
