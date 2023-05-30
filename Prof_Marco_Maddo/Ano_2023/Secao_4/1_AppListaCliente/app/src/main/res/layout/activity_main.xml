@@ -38,7 +38,7 @@
          digite Layout Validation. Clique em cima do texto digitado. Pronto. Do lado direito do AndroidStudio,
          aparecerá uma área do Layout Validation, ao qual está fixa na extremidade direita do AndroidStudio.
     -->
-
+    <!-- Aula 39, Seção 5. -->
     <TextView
         android:id="@+id/textTituloApp"
         style="@style/Widget.AppCompat.TextView.SpinnerItem"
