@@ -3,6 +3,7 @@ package devandroid.nobrega.applistacliente.view; // Será meu "ID de app", quand
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import devandroid.nobrega.applistacliente.R;
+import devandroid.nobrega.applistacliente.controller.PessoaController;
 import devandroid.nobrega.applistacliente.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +49,20 @@ public class MainActivity extends AppCompatActivity {
           Nesta aula, ensina a criar uma branch (chamada Versao1_CleanCode) no AndroidStudio.
           Depois, manutenção do código, por meio desta nova branch.
           Em seguida, Commit deste código.
+
+                            Aula 39, Seção 4
+          MVC usando SharedPreferences, para gravar dados de objetos.
+            OBS: O SharedPreferences cria um arquivo temporário, que vai gravar
+            strings, números, dados booleanos, etc.
+
  */
+
+    SharedPreferences preferences; // Declarando um objeto da classe (nativa do android) SharedPreferences (para
+    // permitir gravar dados de objetos).
+
+    public static final String NOME_PREFERENCES = "pref_listavip";
+
+    PessoaController controller; // Declarando um objeto (pasta controller) da classe PessoaController.
 
     Pessoa pessoa; // Declarando um objeto da classe Pessoa. Atalho: Após digitar o nome Pessoa, insira
     // um espaço em branco. Após isso, segure o CTRL, seguido de espaço em branco.
@@ -77,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
         // pessoa.setSobreNome("Maddo");
         // pessoa.setCursoDesejado("Android");
         // pessoa.setTelefoneContato("11-99229191");
+
+        preferences = getSharedPreferences(NOME_PREFERENCES,0); // OBS: O primeiro argumento é o nome, enquanto que
+        // o segundo é um valor numérico. 0 representa a operação de Leitura e Escrita.
+        SharedPreferences.Editor listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
+        // a edição dos dados do objeto.
+
+
+        controller = new PessoaController(); // Instanciando um objeto da classe PessoaController.
+        controller.toString(); // Chamando o método toString, da Controller.
 
         outraPessoa = new Pessoa();
         outraPessoa.setPrimeiroNome("Roberto");
@@ -137,6 +161,16 @@ public class MainActivity extends AppCompatActivity {
                 // Abaixo, vai ser usado um Toast, para exibir o que foi "obtido para ser
                 // gravado".
                 Toast.makeText(MainActivity.this,"Salvo : " + pessoa.toString(), Toast.LENGTH_LONG).show();
+
+                listaVip.putString("primeiroNome",pessoa.getPrimeiroNome()); // O putString tem um papel similar ao método setter, porém aplicado
+                // ao SharedPreferences. O primeiro argumento é uma chave (para o atributo), enquanto que o
+                // segundo argumento é o "valor" associado a chave.
+                listaVip.putString("sobreNome",pessoa.getSobreNome());
+                listaVip.putString("nomeCurso",pessoa.getCursoDesejado());
+                listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
+                listaVip.apply(); // Gravando os dados do SharedPreferences.
+
+                controller.salvar(pessoa); // Controladora "Gravando" pessoa.
             }
         }); // Evento para o botão "Salvar".
 
