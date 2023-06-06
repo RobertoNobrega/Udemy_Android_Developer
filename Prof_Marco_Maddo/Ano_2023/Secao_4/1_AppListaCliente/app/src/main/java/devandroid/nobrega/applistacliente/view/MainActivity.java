@@ -67,10 +67,21 @@ public class MainActivity extends AppCompatActivity {
              na Commit 1 (branch SharedPreferences_BuscarDados), sobrescreve os dados de uma possível nova
              pessoa que deseja se cadastrar (EX: Se P1 tem dados registrados no arquivo pref_listavip.xml e,
              por acaso, P2 se registra, os dados de P1 foram "apagados", sendo substituídos pelos dados de P2).
+
+
+         	                Aula 41: MVC usando SharedPreferences para limpar dados salvos previamente
+	      Atalho:  Na classe MainActivity, selecione um objeto qualquer declarado (ex: btnLimpar). Depois, segure o ctrl,
+	      apertando em seguida a tecla B . Vai exibir uma "pequena janela", mostrando, no código da classe MainActivity,
+	      as partes do código que usam o objeto btnLimpar.
+
+	                        Aula 42
+	      O professor cria a branch SharedPreferences_limpar, tendo como referência a branch release (no meu, é a main).
+
  */
 
     SharedPreferences preferences; // Declarando um objeto da classe (nativa do android) SharedPreferences (para
     // permitir gravar dados de objetos).
+    SharedPreferences.Editor listaVip;
 
     public static final String NOME_PREFERENCES = "pref_listavip";
 
@@ -107,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences(NOME_PREFERENCES,0); // OBS: O primeiro argumento é o nome, enquanto que
         // o segundo é um valor numérico. 0 representa a operação de Leitura e Escrita.
-        SharedPreferences.Editor listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
+        //SharedPreferences.Editor listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
+        // a edição dos dados do objeto.
+        listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
         // a edição dos dados do objeto.
 
         // Abaixo, estamos recupendo os dados "registrados" de uma pessoa, que se encontra em um arquivo do próprio dispositivo.
@@ -154,14 +167,17 @@ public class MainActivity extends AppCompatActivity {
         // editPrimeiroNome.setText(pessoa.getPrimeiroNome());  // Vai preencher o EditText com texto,
         // usando o setText. OBS: Isso está na aula 34, da seção 4.
 
-        btnLimpar.setOnClickListener(new View.OnClickListener() {
+        btnLimpar.setOnClickListener(new View.OnClickListener(){
             @Override // Reescrevendo o método onClick abaixo.
             public void onClick(View v) {
                 editPrimeiroNome.setText("");
                 editSobreNomeAluno.setText("");
                 editTelefoneContato.setText("");
                 editNomeCurso.setText("");
-
+                listaVip.clear(); // Limpando o listaVip.
+                listaVip.apply(); // Aplicando as mudanças (após usar o método clear acima). Ou seja,
+                // os dados gravados no arquivo pref_listavip.xml foram apagados, após clicar
+                // botão Limpar do aplicativo.
             }
         }); // setOnClickListener serve para Evento de Botão.
 
