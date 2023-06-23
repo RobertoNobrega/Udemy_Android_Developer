@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
  */
 
-    SharedPreferences preferences; // Declarando um objeto da classe (nativa do android) SharedPreferences (para
+    // SharedPreferences preferences; // Declarando um objeto da classe (nativa do android) SharedPreferences (para
     // permitir gravar dados de objetos).
-    SharedPreferences.Editor listaVip;
+    // SharedPreferences.Editor listaVip;
 
-    public static final String NOME_PREFERENCES = "pref_listavip";
+    // public static final String NOME_PREFERENCES = "pref_listavip";
 
     PessoaController controller; // Declarando um objeto (pasta controller) da classe PessoaController.
 
@@ -108,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
         // OBS: Atalho (Em R.layout.activity_main , se for selecionado com o cursor do mouse o nome
         // activity_main e, em seguida, segurar na tecla ctrl e na tecla B, vai abrir o xml do
         // activity_main.
+        controller = new PessoaController(MainActivity.this); // Instanciando um objeto da classe PessoaController.
+        // OBS: Em MainActivity.this sendo colocado e passado para a chamada do método construtor da classe
+        // PessoaController, significa que está passando o contexto da classe MainActivity para PessoaController.
         pessoa = new Pessoa(); // Instanciando um objeto da classe Pessoa.
         // Abaixo, estamos usando os métodos set, para preencher o objeto ( pessoa ), conforme o seu
         // MODELO, TEMPLATE.
@@ -116,22 +119,25 @@ public class MainActivity extends AppCompatActivity {
         // pessoa.setCursoDesejado("Android");
         // pessoa.setTelefoneContato("11-99229191");
 
-        preferences = getSharedPreferences(NOME_PREFERENCES,0); // OBS: O primeiro argumento é o nome, enquanto que
+        controller.buscar(pessoa); // OBS: O método buscar retorna um objeto da classe Pessoa. Porém, como o mesmo recebe um objeto
+        // da classe Pessoa, o "objeto retornado" será o mesmo que foi passado na chamada do método, porém com atualização (isso, é
+        // como um ponteiro, em linguagem C).
+
+        // preferences = getSharedPreferences(NOME_PREFERENCES,0); // OBS: O primeiro argumento é o nome, enquanto que
         // o segundo é um valor numérico. 0 representa a operação de Leitura e Escrita.
         //SharedPreferences.Editor listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
         // a edição dos dados do objeto.
-        listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
+        // listaVip = preferences.edit(); // Com o objeto da classe Editor, já podemos realizar
         // a edição dos dados do objeto.
 
         // Abaixo, estamos recupendo os dados "registrados" de uma pessoa, que se encontra em um arquivo do próprio dispositivo.
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome","")); // Recuperando Nome no arquivo pref_listavip.xml.
+        // pessoa.setPrimeiroNome(preferences.getString("primeiroNome","")); // Recuperando Nome no arquivo pref_listavip.xml.
         // O primeiro argumento é o valor do atributo name, que se encontra na tag string do mesmo arquivo (no arquivo, diz que o valor
         // deste atributo é primeiroNome). O segundo argumento é, caso não exista esta "key" do primeiro argumento, então, será "".
-        pessoa.setSobreNome(preferences.getString("sobreNome","")); // Recuperando Sobrenome.
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso","")); // Recuperando Nome do Curso.
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato","")); // Recuperando Telefone de Contato.
+        // pessoa.setSobreNome(preferences.getString("sobreNome","")); // Recuperando Sobrenome.
+        // pessoa.setCursoDesejado(preferences.getString("nomeCurso","")); // Recuperando Nome do Curso.
+        // pessoa.setTelefoneContato(preferences.getString("telefoneContato","")); // Recuperando Telefone de Contato.
 
-        controller = new PessoaController(); // Instanciando um objeto da classe PessoaController.
         controller.toString(); // Chamando o método toString, da Controller.
 
         /*
@@ -174,10 +180,11 @@ public class MainActivity extends AppCompatActivity {
                 editSobreNomeAluno.setText("");
                 editTelefoneContato.setText("");
                 editNomeCurso.setText("");
-                listaVip.clear(); // Limpando o listaVip.
-                listaVip.apply(); // Aplicando as mudanças (após usar o método clear acima). Ou seja,
+                // listaVip.clear(); // Limpando o listaVip.
+                // listaVip.apply(); // Aplicando as mudanças (após usar o método clear acima). Ou seja,
                 // os dados gravados no arquivo pref_listavip.xml foram apagados, após clicar
                 // botão Limpar do aplicativo.
+                controller.limpar(); // Método, para limpar os dados, no arquivo pref_listavip.xml
             }
         }); // setOnClickListener serve para Evento de Botão.
 
@@ -205,13 +212,13 @@ public class MainActivity extends AppCompatActivity {
                 // gravado".
                 Toast.makeText(MainActivity.this,"Salvo : " + pessoa.toString(), Toast.LENGTH_LONG).show();
 
-                listaVip.putString("primeiroNome",pessoa.getPrimeiroNome()); // O putString tem um papel similar ao método setter, porém aplicado
+                // listaVip.putString("primeiroNome",pessoa.getPrimeiroNome()); // O putString tem um papel similar ao método setter, porém aplicado
                 // ao SharedPreferences. O primeiro argumento é uma chave (para o atributo), enquanto que o
                 // segundo argumento é o "valor" associado a chave.
-                listaVip.putString("sobreNome",pessoa.getSobreNome());
-                listaVip.putString("nomeCurso",pessoa.getCursoDesejado());
-                listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
-                listaVip.apply(); // Gravando os dados do SharedPreferences.
+                // listaVip.putString("sobreNome",pessoa.getSobreNome());
+                // listaVip.putString("nomeCurso",pessoa.getCursoDesejado());
+                // listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
+                // listaVip.apply(); // Gravando os dados do SharedPreferences.
 
                 controller.salvar(pessoa); // Controladora "Gravando" pessoa.
             }
