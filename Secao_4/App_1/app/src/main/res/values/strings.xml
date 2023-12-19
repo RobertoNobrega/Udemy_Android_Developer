@@ -1,3 +1,4 @@
 <resources>
+    <!-- Aula 21, Seção 4: Arquivo para Strings ( textos ) do App. -->
     <string name="app_name">AppListaCurso</string>
 </resources>

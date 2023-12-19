@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!--
+        Aula 21, Seção 4: Neste arquivo, informa as permissões que o App possuirá ( ex: permissão
+        para acessar a câmera, acessar o wifi, etc ). Também, neste arquivo, informa qual será a
+        primeira tela a ser executada quando o App for aberto.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- Permissão para que o App utilize
+    acesso a Internet. -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
