@@ -52,4 +52,14 @@ public class Pessoa{
     public void setTelefoneContato(String telefoneContato) {
         this.telefoneContato = telefoneContato;
     }
+
+    @Override // Ao usar @Override, estamos sobrescrevendo o método abaixo (no caso, toString).
+    public String toString(){ // OBS: Método criado na aula 33, da Seção 4. Usei a opção Generate.
+        return "Pessoa{" +
+                "primeiroNome='" + primeiroNome + '\'' +
+                ", sobreNome='" + sobreNome + '\'' +
+                ", cursoDesejado='" + cursoDesejado + '\'' +
+                ", telefoneContato='" + telefoneContato + '\'' +
+                '}';
+    }
 }
