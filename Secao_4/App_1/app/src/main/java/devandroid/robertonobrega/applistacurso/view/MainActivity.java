@@ -3,10 +3,9 @@ package devandroid.robertonobrega.applistacurso.view; // OBS: devandroid é o "n
 // sendo desenvolvido. view é o nome do pacote.
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import devandroid.robertonobrega.applistacurso.R;
+import devandroid.robertonobrega.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +24,16 @@ public class MainActivity extends AppCompatActivity {
           de desenvolvimento Mobile, cada letra será um pacote. OBS: Esse padrão é indicado
           para quem está iniciando na carreira de desenvolvedor.
 
+        Aula 28, Seção 4:  OBS: O prof. ensina a resolver "pequeno" bug nos campos de Layout, identificados
+        pelo Emulador.
+
+        Aula 29, Seção 4: Paradigma de Programação Oriantada a Objetos.
+
     */
+
+    Pessoa pessoa; // Definindo um objeto da classe Pessoa. Até esse ponto, o objeto não está instanciado. Atalho: Após
+    // inserir o nome da classe (no caso, Pessoa), segure a tecla Ctrl e em seguida tecle a tecla de Espaço em Branco. Re-
+    // sultado: O AndroidStudio irá completar, automaticamente, o nome do objeto da classe.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +42,6 @@ public class MainActivity extends AppCompatActivity {
         // do app a ser aberta ( ao iniciar o app ) é a tela activity_main ( essa activity_main é uma
         // tela do XML ). OBS: Atalho: Ao selecionar o nome da tela do XML (nesse caso, activity_main),
         // ao segurar a tecla Ctrl , clique em seguida a tecla B. Vai abrir a tela do XML.
+        pessoa = new Pessoa(); // Objeto pessoa foi instanciado.
     }
 }
