@@ -14,8 +14,15 @@
          aparece outros itens a serem visualizados como preview do App em outros dispositivos.
      -->
 
+    <!--
+         Aula 34, Seção 4: Exibindo dados do objeto, em TextView e EditText.
+              OBS:  Em android:id="@+id/textTitulo" , foi selecionado @+id/textTituloApp e, após isso, clicou no botão
+              direito do mouse, para escolher a opção Refactor e, em seguida, Rename. No campo de texto, com o valor
+              textTitulo, foi alterado para textTituloApp. Isso faz com que, onde tinha declarado os componentes usando
+              textTitulo, irá ser textTituloApp ; ou seja, forma automatizada.
+    -->
     <TextView
-        android:id="@+id/textTitulo"
+        android:id="@+id/textTituloApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/red"
@@ -41,10 +48,10 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitulo" /> <!-- editTextText3 -->
+        app:layout_constraintTop_toBottomOf="@+id/textTituloApp" /> <!-- editTextText3 -->
 
     <EditText
-        android:id="@+id/editSobreNome"
+        android:id="@+id/editSobreNomeAluno"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_margin="16dp"
@@ -68,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSobreNome" /> <!-- editTextText5 -->
+        app:layout_constraintTop_toBottomOf="@+id/editSobreNomeAluno" /> <!-- editTextText5 -->
 
     <EditText
         android:id="@+id/editTelefone"

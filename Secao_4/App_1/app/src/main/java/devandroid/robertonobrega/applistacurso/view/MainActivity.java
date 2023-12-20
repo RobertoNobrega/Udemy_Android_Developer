@@ -4,6 +4,8 @@ package devandroid.robertonobrega.applistacurso.view; // OBS: devandroid é o "n
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
 import devandroid.robertonobrega.applistacurso.R;
 import devandroid.robertonobrega.applistacurso.model.Pessoa;
 
@@ -72,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa += " Telefone de Contato: ";
         dadosPessoa += pessoa.getTelefoneContato();
 
-        int parada = 0;
+        //int parada = 0;
+
+        Log.i("POOAndroid",pessoa.toString()); // Aula 33, Seção 4. Este método serve para exibir dados
+        // , informações, no LogCat.
     }
 }
