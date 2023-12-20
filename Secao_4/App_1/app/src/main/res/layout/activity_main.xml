@@ -6,11 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--
+         Aula 24, Seção 4:    Atalho:  Clique o botão de Shift, duas vezes em seguida. Depois, abrirá uma janela.
+         Nela, no campo de texto, digite  Layout Validation. Essa opção, irá exibir os previews de telas de dispositivos,
+         com tamanhos distintos, que irão exibir a tela de nosso App. No ícone do "olhinho", pode escolher a opção de
+         Show System UI ( vai exibir uma parte do App, com relógio, bateria e sinal wireless ). Em Layout Validation,
+         aparece outros itens a serem visualizados como preview do App em outros dispositivos.
+     -->
+
     <TextView
         android:id="@+id/textTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/red"
         android:text="Aplicativo Lista VIP Curso Android"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
