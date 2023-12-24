@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         Aula 38, Seção 5.
     */
 
+    // Aula 40, Seção 5.
+
     Pessoa pessoa; // Definindo um objeto da classe Pessoa. Até esse ponto, o objeto não está instanciado. Atalho: Após
     // inserir o nome da classe (no caso, Pessoa), segure a tecla Ctrl e em seguida tecle a tecla de Espaço em Branco. Re-
     // sultado: O AndroidStudio irá completar, automaticamente, o nome do objeto da classe.
