@@ -5,6 +5,10 @@ package devandroid.robertonobrega.applistacurso.view; // OBS: devandroid é o "n
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import devandroid.robertonobrega.applistacurso.R;
 import devandroid.robertonobrega.applistacurso.model.Pessoa;
@@ -15,25 +19,7 @@ public class MainActivity extends AppCompatActivity {
     // diante, possuem o Java, de forma embutida.
 
     /*
-        Aula 21, Seção 4: O prof. informa que a pasta ( onde está o arquivo MainActivity.java )
-        será a que trabalharemos muito. As outras duas pastas ( dentro da pasta java ), trata-se
-        para uso em testes (obs: o prof, neste momento, excluiu essas pastas, por não ser úteis
-        para este início de programação; porém são importantes para desenvolvimentos "grandes").
-        Na pasta drawable, vai possuir imagens do App (OBS: ic_launcher_foreground.xml (v24), é para
-        API 24).
-        Na pasta xml, tem dois arquivos. Neles, podemos fornecer mais permissões ao App.
-
-        Aula 25, Seção 4
-          Dentro do SDK do Android, temos diversos Padrões de Projeto de Software.
-          Nesta aula, será ensinada o padrão MVC (Model View Controller). No contexto
-          de desenvolvimento Mobile, cada letra será um pacote. OBS: Esse padrão é indicado
-          para quem está iniciando na carreira de desenvolvedor.
-
-        Aula 28, Seção 4:  OBS: O prof. ensina a resolver "pequeno" bug nos campos de Layout, identificados
-        pelo Emulador.
-
-        Aula 29, Seção 4: Paradigma de Programação Oriantada a Objetos.
-        Aula 30, Seção 4: Paradigma de Programação Oriantada a Objetos. Método e Atributo.
+        Aula 38, Seção 5.
     */
 
     Pessoa pessoa; // Definindo um objeto da classe Pessoa. Até esse ponto, o objeto não está instanciado. Atalho: Após
@@ -41,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
     // sultado: O AndroidStudio irá completar, automaticamente, o nome do objeto da classe.
     Pessoa outraPessoa;
     String dadosPessoa, dadosOutraPessoa;  // OBS: Objetos declarados na aula 32, da seção 4.
+
+    EditText editPrimeiroNome; // Aula 35, Seção 4. OBS: Este objeto recebe o mesmo nome do id, chamado editPrimeiroNome,
+    // presente em activity_main.xml.  O objeto aqui é para receber a referência do componente EditText ( para menter
+    // comunicação ).
+    EditText editSobreNomeAluno, editCursoDesejado, editTelefone;
+    Button btnSalvar; // Aula 35, Seção 4. Obtendo comunicação ( do XML com a classe Java ) do botão Button.
+    Button btnFinalizar, btnLimpar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,19 +53,56 @@ public class MainActivity extends AppCompatActivity {
         outraPessoa.setSobreNome("Alves");
         outraPessoa.setCursoDesejado("Java");
         outraPessoa.setTelefoneContato("(83)9888-876");
-        // int parada = 0; // Aula 31, Seção 4. Esta variável será uasada como 'parada', por meio do uso do Modo Debug.
-        // Para usar o modo Debug, escolha a linha de código, que será usada a ser analisada. Escolhida, aponte o cur-
-        // sor do mouse no número da linha e clique em cima do mesmo. Irá aparecer uma 'bolinha vermelha'. OBS: Para
-        // desmarcar, clique em cima da 'bolinha vermelha'.
 
-        dadosPessoa = "Primeiro Nome: ";
-        dadosPessoa += pessoa.getPrimeiroNome();
-        dadosPessoa += " Sobrenome: ";
-        dadosPessoa += pessoa.getSobreNome();
-        dadosPessoa += " Curso Desejado: ";
-        dadosPessoa += pessoa.getCursoDesejado();
-        dadosPessoa += " Telefone de Contato: ";
-        dadosPessoa += pessoa.getTelefoneContato();
+        editPrimeiroNome = findViewById(R.id.editPrimeiroNome); // Aula 35, Seção 4. Obtendo a referência o editText do Primeiro NOme,
+        // para ser inserido no objeto editPrimeiroNome.
+        editSobreNomeAluno = findViewById(R.id.editSobreNomeAluno);
+        editTelefone = findViewById(R.id.editTelefone);
+        editCursoDesejado = findViewById(R.id.editCursoDesejado);
+
+        btnLimpar = findViewById(R.id.btnLimpar); // Aula 35, Seção 4.
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome()); // Exibindo a String de Primeiro Nome, no campo do App do próprio EditText de
+        // Primeiro Nome.
+        editSobreNomeAluno.setText(pessoa.getSobreNome());
+        editTelefone.setText(pessoa.getTelefoneContato());
+        editCursoDesejado.setText(pessoa.getCursoDesejado());
+
+        btnLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Pronto. Dentro do corpo deste método, é que haverá as instruções a serem feitas pelo App.
+                editPrimeiroNome.setText(""); // O texto será "apagado" do campo.
+                editSobreNomeAluno.setText(""); // Mesmo efeito.
+                editTelefone.setText(""); // Mesmo efeito.
+                editCursoDesejado.setText(""); // Mesmo efeito.
+            }
+        }); // Aula 36, Seção 4. Este método será para realizar "Evento de Botão" ( quando o botão for clicado, vai fazer
+        // alguma coisa.
+
+        btnFinalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Volte Sempre",Toast.LENGTH_LONG).show(); // Serve para apresentar
+                // um Toast ( balãozinho de dados, exibido pelo App ). O primeiro argumento é o contexto do App ( no caso, será
+                // da classe MainActivity ). O segundo a String a ser exibida e por fim, o terceiro é o tempo de exibição do
+                // mesmo.
+                finish(); // Finalizando o App.
+            }
+        }); // Aula 36, Seção 4.
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pessoa.setPrimeiroNome(editPrimeiroNome.getText().toString());
+                pessoa.setSobreNome(editSobreNomeAluno.getText().toString());
+                pessoa.setTelefoneContato(editTelefone.getText().toString());
+                pessoa.setCursoDesejado(editCursoDesejado.getText().toString());
+                Toast.makeText(MainActivity.this,"Salvo " + pessoa.toString(),Toast.LENGTH_LONG).show();
+            }
+        }); // Aula 36, Seção 4.
 
         //int parada = 0;
 
