@@ -3,6 +3,8 @@ package devandroid.robertonobrega.applistacurso.view; // OBS: devandroid é o "n
 // sendo desenvolvido. view é o nome do pacote.
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import devandroid.robertonobrega.applistacurso.R;
+import devandroid.robertonobrega.applistacurso.controller.PessoaController;
 import devandroid.robertonobrega.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,10 +23,15 @@ public class MainActivity extends AppCompatActivity {
 
     /*
         Aula 38, Seção 5.
+        Aula 39, Seção 5.
     */
 
-    // Aula 40, Seção 5.
-
+    SharedPreferences preferences; // Aula 40, Seção 5.  Aqui, é um recurso nativo do Android. Serve para
+    // criar um 'arquivo temporário', para armazenamento de Strings, Números, etc.
+    public static final String NOME_PREFERENCES = "pref_listavip"; // OBS: A string recebida será o nome dado ao arquivo xml
+    // que receberá os dados do SharedPreferences. Esse arquivo estará em data -> data -> devandroid.robertonobrega.applistacurso
+    // shared_prefs -> pref_listavip.xml  ( Pode ser visto no Device Explorer, do Android Studio ).
+    PessoaController controller;
     Pessoa pessoa; // Definindo um objeto da classe Pessoa. Até esse ponto, o objeto não está instanciado. Atalho: Após
     // inserir o nome da classe (no caso, Pessoa), segure a tecla Ctrl e em seguida tecle a tecla de Espaço em Branco. Re-
     // sultado: O AndroidStudio irá completar, automaticamente, o nome do objeto da classe.
@@ -43,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
         // do app a ser aberta ( ao iniciar o app ) é a tela activity_main ( essa activity_main é uma
         // tela do XML ). OBS: Atalho: Ao selecionar o nome da tela do XML (nesse caso, activity_main),
         // ao segurar a tecla Ctrl , clique em seguida a tecla B. Vai abrir a tela do XML.
+
+        controller = new PessoaController();  // Aula 39, Seção 5.
+        controller.toString(); // Aqui, neste caso, poderá ser visto no LogCat a mensagem do toString.
+
+        preferences = getSharedPreferences(NOME_PREFERENCES, 0); // OBS: O número zero, indica o modo,
+        // que é de Leitura e Escrita no 'arquivo'.
+        SharedPreferences.Editor listaVip = preferences.edit(); // Objeto listaVip. Vai servir para realizar a
+        // edição do SharedPreferences.
+
         pessoa = new Pessoa(); // Objeto pessoa foi instanciado.
         pessoa.setPrimeiroNome("Roberto"); // Chamando o método setPrimeiroNome. Nele, estará preenchendo um valor para o atributo
         // private, chamado primeiroNome.
@@ -103,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setTelefoneContato(editTelefone.getText().toString());
                 pessoa.setCursoDesejado(editCursoDesejado.getText().toString());
                 Toast.makeText(MainActivity.this,"Salvo " + pessoa.toString(),Toast.LENGTH_LONG).show();
+
+                listaVip.putString("primeiroNome",pessoa.getPrimeiroNome()); // Armazenando nome no SharedPreferences. OBS: O primeiro argumento é
+                // uma chave, para ter "acesso ao mesmo" no objeto do SharedPreferences.
+                listaVip.putString("sobreNome",pessoa.getSobreNome()); // Armazenando Sobrenome.
+                listaVip.putString("nomeCurso",pessoa.getCursoDesejado()); // Armazenando Curso.
+                listaVip.putString("telefoneContato",pessoa.getTelefoneContato()); // Armazenando Telefone.
+                listaVip.apply(); // Gravando os Dados do SharedPreferences.
+
+                controller.salvar(pessoa); // Aula 39, Seção 5. Método Presente na classe PessoaController.
             }
         }); // Aula 36, Seção 4.
 
