@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         Aula 39, Seção 5.
     */
 
+    // Aula 41: Usar o SharedPreferences, para recuperar os dados salvos, no arquivo xml da pasta data -> data ->
+    // devandroid.robertonobrega.applistacurso -> shared_prefs.
+
     SharedPreferences preferences; // Aula 40, Seção 5.  Aqui, é um recurso nativo do Android. Serve para
     // criar um 'arquivo temporário', para armazenamento de Strings, Números, etc.
     public static final String NOME_PREFERENCES = "pref_listavip"; // OBS: A string recebida será o nome dado ao arquivo xml
@@ -61,17 +64,28 @@ public class MainActivity extends AppCompatActivity {
         // edição do SharedPreferences.
 
         pessoa = new Pessoa(); // Objeto pessoa foi instanciado.
+
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome","Não Declarado o Nome")); // Setando o primeiro nome
+        // da pessoa, na tela do App.
+        pessoa.setSobreNome(preferences.getString("sobreNome","Não Declarado o Sobrenome"));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato","Não Declarado o Telefone"));
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso","Não Declarado o Curso"));
+
+        /*
         pessoa.setPrimeiroNome("Roberto"); // Chamando o método setPrimeiroNome. Nele, estará preenchendo um valor para o atributo
         // private, chamado primeiroNome.
         pessoa.setSobreNome("Nóbrega");
         pessoa.setCursoDesejado("Android Developer");
         pessoa.setTelefoneContato("(83)9888-888");
+        */
 
+        /*
         outraPessoa = new Pessoa();
         outraPessoa.setPrimeiroNome("Luiz");
         outraPessoa.setSobreNome("Alves");
         outraPessoa.setCursoDesejado("Java");
         outraPessoa.setTelefoneContato("(83)9888-876");
+        */
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome); // Aula 35, Seção 4. Obtendo a referência o editText do Primeiro NOme,
         // para ser inserido no objeto editPrimeiroNome.
@@ -83,11 +97,18 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        editSobreNomeAluno.setText(pessoa.getSobreNome());
+        editTelefone.setText(pessoa.getTelefoneContato());
+        editCursoDesejado.setText(pessoa.getCursoDesejado());
+
+        /*
         editPrimeiroNome.setText(pessoa.getPrimeiroNome()); // Exibindo a String de Primeiro Nome, no campo do App do próprio EditText de
         // Primeiro Nome.
         editSobreNomeAluno.setText(pessoa.getSobreNome());
         editTelefone.setText(pessoa.getTelefoneContato());
         editCursoDesejado.setText(pessoa.getCursoDesejado());
+        */
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
