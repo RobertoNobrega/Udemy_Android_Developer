@@ -8,8 +8,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.List;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     // inserir o nome da classe (no caso, Pessoa), segure a tecla Ctrl e em seguida tecle a tecla de Espaço em Branco. Re-
     // sultado: O AndroidStudio irá completar, automaticamente, o nome do objeto da classe.
     Pessoa outraPessoa;
-    List<Curso> listaDeCursos;
+    List<String> nomesDosCursos;
     CursoController cursoController;  // Aula 48, Seção 6.
     String dadosPessoa, dadosOutraPessoa;  // OBS: Objetos declarados na aula 32, da seção 4.
 
@@ -54,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editSobreNomeAluno, editCursoDesejado, editTelefone;
     Button btnSalvar; // Aula 35, Seção 4. Obtendo comunicação ( do XML com a classe Java ) do botão Button.
     Button btnFinalizar, btnLimpar;
+
+    Spinner spinner; // Aula 49, Seção 6.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         // pessoa.setCursoDesejado(preferences.getString("nomeCurso","Não Declarado o Curso"));
 
         cursoController = new CursoController(); // Aula 48, Seção 6.
-        listaDeCursos = cursoController.getListaDeCursos();
+        nomesDosCursos = cursoController.dadosParaSpinner(); // Aula 49, Seção 6.
         /*
         pessoa.setPrimeiroNome("Roberto"); // Chamando o método setPrimeiroNome. Nele, estará preenchendo um valor para o atributo
         // private, chamado primeiroNome.
@@ -107,11 +111,27 @@ public class MainActivity extends AppCompatActivity {
         btnLimpar = findViewById(R.id.btnLimpar); // Aula 35, Seção 4.
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
+        spinner = findViewById(R.id.spinner); // Aula 49, Seção 6. Obtendo a referência do Spinner da tela de
+        // Layout ( que se encontra no activity_main.xml ). OBS: android:id="@+id/spinner" , encontra-se na
+        // tag Spinner, do xml do activity_main.xml . Na classe R, o id dele é indicado pelo nome spinner ( mesmo
+        // nome de id, declarado na tag Spinner do xml ).
 
         editPrimeiroNome.setText(pessoa.getPrimeiroNome());
         editSobreNomeAluno.setText(pessoa.getSobreNome());
         editTelefone.setText(pessoa.getTelefoneContato());
         editCursoDesejado.setText(pessoa.getCursoDesejado());
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, cursoController.dadosParaSpinner());
+        // Criando um objeto ( que vai implementar o Padrão de Projeto, chamado Adapter ). O objeto será para receber String ( definido
+        // em <String> ). Quando está instanciando, vai receber o contexto 'atual' ( no caso, o this ); o segundo argumento
+        // indica o tipo de layout que o Spinner irá possuir. O terceiro argumento são as Strings que deverão ser enviadas a
+        // lista do Spinner. Aula 49, Seção 6.
+
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);// Quando clicar no Adapter, o que vai aparecer e como vai aparecer.
+        // O prof. ensina a usar o padrão, para este caso acima. Aula 49, Seção 6.
+
+        spinner.setAdapter(adapter); // Por fim, informa qual Adapter deverá ser usado no Spinner. Neste caso, está representado pelo objeto da
+        // classe Adapter ( aqui, chamado de adapter ). Aula 49, Seção 6.
 
         /*
         editPrimeiroNome.setText(pessoa.getPrimeiroNome()); // Exibindo a String de Primeiro Nome, no campo do App do próprio EditText de
