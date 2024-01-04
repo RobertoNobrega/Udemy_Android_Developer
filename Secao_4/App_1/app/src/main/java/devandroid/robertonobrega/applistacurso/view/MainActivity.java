@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
     // Aula 41: Usar o SharedPreferences, para recuperar os dados salvos, no arquivo xml da pasta data -> data ->
     // devandroid.robertonobrega.applistacurso -> shared_prefs.
 
-    SharedPreferences preferences; // Aula 40, Seção 5.  Aqui, é um recurso nativo do Android. Serve para
+    // SharedPreferences preferences; // Aula 40, Seção 5.  Aqui, é um recurso nativo do Android. Serve para
     // criar um 'arquivo temporário', para armazenamento de Strings, Números, etc.
-    SharedPreferences.Editor listaVip; // Aula 42, Seção 5.
-    public static final String NOME_PREFERENCES = "pref_listavip"; // OBS: A string recebida será o nome dado ao arquivo xml
+    // SharedPreferences.Editor listaVip; // Aula 42, Seção 5.
+    // public static final String NOME_PREFERENCES = "pref_listavip"; // OBS: A string recebida será o nome dado ao arquivo xml
     // que receberá os dados do SharedPreferences. Esse arquivo estará em data -> data -> devandroid.robertonobrega.applistacurso
     // shared_prefs -> pref_listavip.xml  ( Pode ser visto no Device Explorer, do Android Studio ).
     PessoaController controller;
@@ -56,21 +56,23 @@ public class MainActivity extends AppCompatActivity {
         // tela do XML ). OBS: Atalho: Ao selecionar o nome da tela do XML (nesse caso, activity_main),
         // ao segurar a tecla Ctrl , clique em seguida a tecla B. Vai abrir a tela do XML.
 
-        controller = new PessoaController();  // Aula 39, Seção 5.
+        controller = new PessoaController(MainActivity.this);  // Aula 39 e 44, Seção 5.
         controller.toString(); // Aqui, neste caso, poderá ser visto no LogCat a mensagem do toString.
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0); // OBS: O número zero, indica o modo,
+        // preferences = getSharedPreferences(NOME_PREFERENCES, 0); // OBS: O número zero, indica o modo,
         // que é de Leitura e Escrita no 'arquivo'.
-        listaVip = preferences.edit(); // Objeto listaVip. Vai servir para realizar a
+        // listaVip = preferences.edit(); // Objeto listaVip. Vai servir para realizar a
         // edição do SharedPreferences.
 
         pessoa = new Pessoa(); // Objeto pessoa foi instanciado.
+        controller.buscar(pessoa); // Aula 44, Seção 5.  Ao instanciar o objeto pessoa, não tem dados. Porém, ao
+        // ser usado no método buscar, o objeto pessoa passará a ter dados.
 
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome","Não Declarado o Nome")); // Setando o primeiro nome
+        // pessoa.setPrimeiroNome(preferences.getString("primeiroNome","Não Declarado o Nome")); // Setando o primeiro nome
         // da pessoa, na tela do App.
-        pessoa.setSobreNome(preferences.getString("sobreNome","Não Declarado o Sobrenome"));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato","Não Declarado o Telefone"));
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso","Não Declarado o Curso"));
+        // pessoa.setSobreNome(preferences.getString("sobreNome","Não Declarado o Sobrenome"));
+        // pessoa.setTelefoneContato(preferences.getString("telefoneContato","Não Declarado o Telefone"));
+        // pessoa.setCursoDesejado(preferences.getString("nomeCurso","Não Declarado o Curso"));
 
         /*
         pessoa.setPrimeiroNome("Roberto"); // Chamando o método setPrimeiroNome. Nele, estará preenchendo um valor para o atributo
@@ -120,8 +122,10 @@ public class MainActivity extends AppCompatActivity {
                 editTelefone.setText(""); // Mesmo efeito.
                 editCursoDesejado.setText(""); // Mesmo efeito.
 
-                listaVip.clear(); // Limpando a lista. * Aula 42, Seção 5 *
-                listaVip.apply(); // "Aplicando" o evento pedido (no caso, para limpar a lista).
+                // listaVip.clear(); // Limpando a lista. * Aula 42, Seção 5 *
+                // listaVip.apply(); // "Aplicando" o evento pedido (no caso, para limpar a lista).
+
+                controller.limpar(); // Aula 44, Seção 5.
             }
         }); // Aula 36, Seção 4. Este método será para realizar "Evento de Botão" ( quando o botão for clicado, vai fazer
         // alguma coisa.
@@ -146,12 +150,12 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setCursoDesejado(editCursoDesejado.getText().toString());
                 Toast.makeText(MainActivity.this,"Salvo " + pessoa.toString(),Toast.LENGTH_LONG).show();
 
-                listaVip.putString("primeiroNome",pessoa.getPrimeiroNome()); // Armazenando nome no SharedPreferences. OBS: O primeiro argumento é
+                // listaVip.putString("primeiroNome",pessoa.getPrimeiroNome()); // Armazenando nome no SharedPreferences. OBS: O primeiro argumento é
                 // uma chave, para ter "acesso ao mesmo" no objeto do SharedPreferences.
-                listaVip.putString("sobreNome",pessoa.getSobreNome()); // Armazenando Sobrenome.
-                listaVip.putString("nomeCurso",pessoa.getCursoDesejado()); // Armazenando Curso.
-                listaVip.putString("telefoneContato",pessoa.getTelefoneContato()); // Armazenando Telefone.
-                listaVip.apply(); // Gravando os Dados do SharedPreferences.
+                // listaVip.putString("sobreNome",pessoa.getSobreNome()); // Armazenando Sobrenome.
+                // listaVip.putString("nomeCurso",pessoa.getCursoDesejado()); // Armazenando Curso.
+                // listaVip.putString("telefoneContato",pessoa.getTelefoneContato()); // Armazenando Telefone.
+                // listaVip.apply(); // Gravando os Dados do SharedPreferences.
 
                 controller.salvar(pessoa); // Aula 39, Seção 5. Método Presente na classe PessoaController.
             }
