@@ -12,8 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import devandroid.robertonobrega.applistacurso.R;
+import devandroid.robertonobrega.applistacurso.controller.CursoController;
 import devandroid.robertonobrega.applistacurso.controller.PessoaController;
+import devandroid.robertonobrega.applistacurso.model.Curso;
 import devandroid.robertonobrega.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     // inserir o nome da classe (no caso, Pessoa), segure a tecla Ctrl e em seguida tecle a tecla de Espaço em Branco. Re-
     // sultado: O AndroidStudio irá completar, automaticamente, o nome do objeto da classe.
     Pessoa outraPessoa;
+    List<Curso> listaDeCursos;
+    CursoController cursoController;  // Aula 48, Seção 6.
     String dadosPessoa, dadosOutraPessoa;  // OBS: Objetos declarados na aula 32, da seção 4.
 
     EditText editPrimeiroNome; // Aula 35, Seção 4. OBS: Este objeto recebe o mesmo nome do id, chamado editPrimeiroNome,
@@ -74,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         // pessoa.setTelefoneContato(preferences.getString("telefoneContato","Não Declarado o Telefone"));
         // pessoa.setCursoDesejado(preferences.getString("nomeCurso","Não Declarado o Curso"));
 
+        cursoController = new CursoController(); // Aula 48, Seção 6.
+        listaDeCursos = cursoController.getListaDeCursos();
         /*
         pessoa.setPrimeiroNome("Roberto"); // Chamando o método setPrimeiroNome. Nele, estará preenchendo um valor para o atributo
         // private, chamado primeiroNome.
