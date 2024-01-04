@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences; // Aula 40, Seção 5.  Aqui, é um recurso nativo do Android. Serve para
     // criar um 'arquivo temporário', para armazenamento de Strings, Números, etc.
+    SharedPreferences.Editor listaVip; // Aula 42, Seção 5.
     public static final String NOME_PREFERENCES = "pref_listavip"; // OBS: A string recebida será o nome dado ao arquivo xml
     // que receberá os dados do SharedPreferences. Esse arquivo estará em data -> data -> devandroid.robertonobrega.applistacurso
     // shared_prefs -> pref_listavip.xml  ( Pode ser visto no Device Explorer, do Android Studio ).
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences(NOME_PREFERENCES, 0); // OBS: O número zero, indica o modo,
         // que é de Leitura e Escrita no 'arquivo'.
-        SharedPreferences.Editor listaVip = preferences.edit(); // Objeto listaVip. Vai servir para realizar a
+        listaVip = preferences.edit(); // Objeto listaVip. Vai servir para realizar a
         // edição do SharedPreferences.
 
         pessoa = new Pessoa(); // Objeto pessoa foi instanciado.
@@ -118,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
                 editSobreNomeAluno.setText(""); // Mesmo efeito.
                 editTelefone.setText(""); // Mesmo efeito.
                 editCursoDesejado.setText(""); // Mesmo efeito.
+
+                listaVip.clear(); // Limpando a lista. * Aula 42, Seção 5 *
+                listaVip.apply(); // "Aplicando" o evento pedido (no caso, para limpar a lista).
             }
         }); // Aula 36, Seção 4. Este método será para realizar "Evento de Botão" ( quando o botão for clicado, vai fazer
         // alguma coisa.
