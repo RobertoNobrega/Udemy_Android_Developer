@@ -61,10 +61,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Aula 25, Seção 4. Nesta linha, informa que a tela
+        // setContentView(R.layout.activity_main); // Aula 25, Seção 4. Nesta linha, informa que a tela
         // do app a ser aberta ( ao iniciar o app ) é a tela activity_main ( essa activity_main é uma
         // tela do XML ). OBS: Atalho: Ao selecionar o nome da tela do XML (nesse caso, activity_main),
         // ao segurar a tecla Ctrl , clique em seguida a tecla B. Vai abrir a tela do XML.
+
+        setContentView(R.layout.activity_spinner); // Aula 50, Seção 6. Aqui, quando o App for executado, vai abrir
+        // a primeira tela; ou seja, a tela activity_spinner.
 
         controller = new PessoaController(MainActivity.this);  // Aula 39 e 44, Seção 5.
         controller.toString(); // Aqui, neste caso, poderá ser visto no LogCat a mensagem do toString.
