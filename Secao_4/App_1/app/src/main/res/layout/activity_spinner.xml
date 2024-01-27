@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MainActivity"
+    android:orientation="vertical">
+    <!-- android:orientation="vertical"  ( Por Default, é horizontal ) -->
+    <!--
+         Aula 24, Seção 4:    Atalho:  Clique o botão de Shift, duas vezes em seguida. Depois, abrirá uma janela.
+         Nela, no campo de texto, digite  Layout Validation. Essa opção, irá exibir os previews de telas de dispositivos,
+         com tamanhos distintos, que irão exibir a tela de nosso App. No ícone do "olhinho", pode escolher a opção de
+         Show System UI ( vai exibir uma parte do App, com relógio, bateria e sinal wireless ). Em Layout Validation,
+         aparece outros itens a serem visualizados como preview do App em outros dispositivos.
+     -->
+
+    <!--
+         Aula 34, Seção 4: Exibindo dados do objeto, em TextView e EditText.
+              OBS:  Em android:id="@+id/textTitulo" , foi selecionado @+id/textTituloApp e, após isso, clicou no botão
+              direito do mouse, para escolher a opção Refactor e, em seguida, Rename. No campo de texto, com o valor
+              textTitulo, foi alterado para textTituloApp. Isso faz com que, onde tinha declarado os componentes usando
+              textTitulo, irá ser textTituloApp ; ou seja, forma automatizada.
+    -->
+
+    <!-- Aula 50, Seção 6 ( esta tela foi ensinada a ser feita nesta aula ). -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"> <!-- Aula 50, Seção 6. Adicionando um ScrollView na tela do App. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"> <!-- OBS: Todos os filhos do ScrollView, devem ficar dentro da tag LinearLayout. -->
+                <TextView
+                    android:id="@+id/textTituloApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/red"
+                    android:gravity="center_horizontal"
+                    android:text="Aplicativo Lista VIP Curso Android"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                     /> <!-- textView. Os códigos do textView, associados ao
+                     Constraint Layout, foram removidos daqui. Foram adicionados
+                     o marginTop, marginStart, marginEnd, layout_width="match_parent",
+                     android:gravity="center_horizontal", android:textSize="24sp"
+                     -->
+
+                <EditText
+                    android:id="@+id/editPrimeiroNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="@string/txt_hint_edit_primeiro_nome"
+                    android:inputType="text"
+                    /> <!-- editTextText3. Os códigos do editText, associados ao
+                     Constraint Layout, foram removidos daqui. Foram inseridos os
+                     códigos de marginStart, marginEnd, marginTop. -->
+
+                <EditText
+                    android:id="@+id/editSobreNomeAluno"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="@string/txt_hint_edit_sobrenome"
+                    android:inputType="text"
+                    /> <!-- editTextText4. Os códigos do editText, associados ao
+                     Constraint Layout, foram removidos daqui. Foram inseridos os
+                     códigos de marginStart, marginEnd, marginTop. -->
+
+                <EditText
+                    android:id="@+id/editCursoDesejado"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="@string/txt_hint_edit_nome_do_curso"
+                    android:inputType="text"
+                    /> <!-- editTextText5. Os códigos do editText, associados ao
+                     Constraint Layout, foram removidos daqui. Foram inseridos os
+                     códigos de marginStart, marginEnd, marginTop. -->
+
+                <EditText
+                    android:id="@+id/editTelefone"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="@string/txt_hint_edit_telefone_contato"
+                    android:inputType="text"
+                     /> <!-- editTextText6. Os códigos do editText, associados ao
+                     Constraint Layout, foram removidos daqui. Foram inseridos os
+                     códigos de marginStart, marginEnd, marginTop. -->
+
+                <TextView
+                    android:id="@+id/txtListaSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_selecione_um_curso"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    /> <!-- Os códigos do TextView, associados ao
+                     Constraint Layout, foram removidos daqui. Foram
+                     adicionados: android:layout_width="match_parent",
+                     android:text="@string/txt_selecione_um_curso",
+                     android:gravity="center_horizontal"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginStart="16dp"
+                     android:layout_marginEnd="16dp"
+                     -->
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    /> <!-- Os códigos do Spinner, associados ao
+                     Constraint Layout, foram removidos daqui. Foram
+                     inclusos, marginStart, marginEnd, marginTop,
+                     android:layout_width="match_parent"
+                     -->
+
+                <!-- button 3 -->
+
+                <!-- button 2 -->
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"> <!-- OBS: LinearLayout dentro de um outro LinearLayout. Nesse
+                    caso aqui, será para deixar os botões de Salvar e Apagar, na orientação Horizontal, para que cada
+                    botão fique um do lado do outro. -->
+                        <Button
+                            android:id="@+id/btnLimpar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LIMPAR"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="8dp"
+                             /> <!-- Os códigos do Button, associados ao
+                             Constraint Layout, foram removidos daqui. Foram
+                             inclusos, marginStart, marginEnd e marginTop. -->
+
+                    <Button
+                        android:id="@+id/btnSalvar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="75dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="SALVAR" /> <!-- Os códigos do Button, associados ao
+                             Constraint Layout, foram removidos daqui. Foram
+                             inclusos, marginStart, marginEnd e marginTop.
+                             OBS: android:layout_marginStart="110dp" : Deslocando o botão, na horizontal. OBS: 110dp
+                             fica "na posição desejada" do celular J2 Prime. 75dp fica bem no Nexus 5 API 23.
+                             -->
+        
+                        <!-- button -->
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnFinalizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FINALIZAR"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    /> <!-- Os códigos do Button, associados ao
+                     Constraint Layout, foram removidos daqui. Foram
+                     inclusos, marginStart, marginEnd e marginTop. -->
+        </LinearLayout>
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

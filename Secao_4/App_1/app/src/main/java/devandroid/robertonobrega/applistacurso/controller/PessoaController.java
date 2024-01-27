@@ -43,11 +43,11 @@ public class PessoaController {
     }
 
     public Pessoa buscar(Pessoa pessoa){ // Aula 44, Seção 5.
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome","Não Declarado o Nome")); // Setando o primeiro nome
-        // da pessoa, na tela do App.
-        pessoa.setSobreNome(preferences.getString("sobreNome","Não Declarado o Sobrenome"));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato","Não Declarado o Telefone"));
-        pessoa.setCursoDesejado(preferences.getString("nomeCurso","Não Declarado o Curso"));
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome","")); // Setando o primeiro nome
+        // da pessoa, na tela do App. OBS: Caso a chave não seja encontrada, vai preencher com Espaço Vazio.
+        pessoa.setSobreNome(preferences.getString("sobreNome",""));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato",""));
+        pessoa.setCursoDesejado(preferences.getString("nomeCurso",""));
         return pessoa;
     }
 
